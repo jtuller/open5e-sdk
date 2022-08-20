@@ -3,6 +3,7 @@ package com.wemojema.open5e.api;
 import lombok.SneakyThrows;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import org.jetbrains.annotations.NotNull;
 
 public class Open5EHttpClientImpl implements Open5EHttpClient {
     private static final String HOST = "https://api.open5e.com";
@@ -19,8 +20,13 @@ public class Open5EHttpClientImpl implements Open5EHttpClient {
     @SneakyThrows
     @Override
     public String fetchWeapon(String slug) {
-        Request request = new Request.Builder().get().url(HOST + WEAPONS + "/" + slug + "/" + FORMAT).build();
+        Request request = getRequestFor(WEAPONS + "/" + slug);
         return httpClient.newCall(request).execute().body().string();
+    }
+
+    @NotNull
+    private Request getRequestFor(String path) {
+        return new Request.Builder().get().url(HOST + path + "/" + FORMAT).build();
     }
 
 
