@@ -1,0 +1,15 @@
+{
+  "name": "Club",
+  "slug": "club",
+  "category": "Simple Melee Weapons",
+  "document__slug": "wotc-srd",
+  "document__title": "Systems Reference Document",
+  "document__license_url": "http://open5e.com/legal",
+  "cost": "1 sp",
+  "damage_dice": "1d4",
+  "damage_type": "bludgeoning",
+  "weight": "2 lb.",
+  "properties": [
+    "light"
+  ]
+}

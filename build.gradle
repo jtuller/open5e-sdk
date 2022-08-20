@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group 'com.wemojema'
+version '0.0.1'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'open5e-core'
+            from components.java
+            pom {
+                name = 'open5e'
+                description = 'A Java SDK for working with the open5e API'
+            }
+        }
+    }
+}
+
+dependencies {
+    annotationProcessor('org.projectlombok:lombok:1.18.24')
+    implementation 'org.projectlombok:lombok:1.18.24'
+    implementation 'org.slf4j:slf4j-api:1.7.36'
+    implementation 'com.alibaba:fastjson:1.2.76'
+
+    testImplementation 'io.symphonia:lambda-logging:1.0.3'
+    testImplementation 'com.github.javafaker:javafaker:1.0.2'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+
+test {
+    useJUnitPlatform()
+}
