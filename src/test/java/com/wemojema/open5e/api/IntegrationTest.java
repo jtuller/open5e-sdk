@@ -18,7 +18,7 @@ public class IntegrationTest {
     @BeforeEach
     void setup() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder().connectTimeout(Duration.ofSeconds(30)).readTimeout(Duration.ofSeconds(60)).build();
-        uut = new Open5EHttpClientImpl(okHttpClient);
+        uut = new Open5EAPIClient(okHttpClient);
     }
 
     @Test

@@ -5,14 +5,14 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.jetbrains.annotations.NotNull;
 
-public class Open5EHttpClientImpl implements Open5EHttpClient {
+public class Open5EAPIClient implements Open5EHttpClient {
     private static final String HOST = "https://api.open5e.com";
     private static final String WEAPONS = "/weapons";
     private static final String FORMAT = "?format=json";
 
     private final OkHttpClient httpClient;
 
-    public Open5EHttpClientImpl(OkHttpClient httpClient) {
+    public Open5EAPIClient(OkHttpClient httpClient) {
         this.httpClient = httpClient;
     }
 
