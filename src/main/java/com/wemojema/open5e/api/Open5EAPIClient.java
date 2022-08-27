@@ -2,7 +2,6 @@ package com.wemojema.open5e.api;
 
 import com.alibaba.fastjson.JSON;
 import com.wemojema.open5e.model.APIResponse;
-import com.wemojema.open5e.model.Monster;
 import com.wemojema.open5e.model.Open5EResultHeader;
 import com.wemojema.open5e.model.Weapon;
 import lombok.SneakyThrows;
@@ -22,7 +21,6 @@ public class Open5EAPIClient implements Open5EHttpClient {
     private static final String HOST = "https://api.open5e.com";
     private static final String FORMAT = "?format=json";
     private static final String WEAPONS = "/weapons";
-    private static final String MONSTERS = "/monsters";
 
     private static final Logger logger = LoggerFactory.getLogger(Open5EAPIClient.class);
 
@@ -34,9 +32,6 @@ public class Open5EAPIClient implements Open5EHttpClient {
     }
 
     public static class WeaponsResponse extends APIResponse<Weapon> {
-    }
-
-    public static class MonsterResponse extends APIResponse<Monster> {
     }
 
     public static class ResponseContainer<T extends Open5EResultHeader> {
@@ -64,18 +59,6 @@ public class Open5EAPIClient implements Open5EHttpClient {
         stopTimer();
         return result;
     }
-
-    @Override
-    @SneakyThrows
-    public List<APIResponse<Monster>> fetchAllMonsters() {
-        logger.trace("fetching all monsters");
-        startTimer();
-        Request request = getRequestFor(MONSTERS);
-        List<APIResponse<Monster>> result = fetchAPIResponse(request, MonsterResponse.class, new ResponseContainer<>());
-        stopTimer();
-        return result;
-    }
-
 
     /**
      * ----------------------------------------------------------------------------------------------------------------

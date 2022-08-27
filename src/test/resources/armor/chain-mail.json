@@ -1,0 +1,13 @@
+{
+  "slug": "chain-mail",
+  "document__slug": "wotc-srd",
+  "document__title": "Systems Reference Document",
+  "document__license_url": "http://open5e.com/legal",
+  "name": "Chain mail",
+  "category": "Heavy Armor",
+  "ac_string": "16",
+  "strength_requirement": 13,
+  "cost": "75 gp",
+  "weight": "",
+  "stealth_disadvantage": true
+}
