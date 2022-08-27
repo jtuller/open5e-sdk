@@ -2,6 +2,7 @@ package com.wemojema.open5e.api;
 
 import com.alibaba.fastjson.JSON;
 import com.wemojema.open5e.model.APIResponse;
+import com.wemojema.open5e.model.Armor;
 import com.wemojema.open5e.model.Open5EResultHeader;
 import com.wemojema.open5e.model.Weapon;
 import lombok.SneakyThrows;
@@ -21,6 +22,7 @@ public class Open5EAPIClient implements Open5EHttpClient {
     private static final String HOST = "https://api.open5e.com";
     private static final String FORMAT = "?format=json";
     private static final String WEAPONS = "/weapons";
+    private static final String ARMOR = "/armor";
 
     private static final Logger logger = LoggerFactory.getLogger(Open5EAPIClient.class);
 
@@ -32,6 +34,9 @@ public class Open5EAPIClient implements Open5EHttpClient {
     }
 
     public static class WeaponsResponse extends APIResponse<Weapon> {
+    }
+
+    public static class ArmorResponse extends APIResponse<Armor> {
     }
 
     public static class ResponseContainer<T extends Open5EResultHeader> {
@@ -56,6 +61,18 @@ public class Open5EAPIClient implements Open5EHttpClient {
         startTimer();
         Request request = getRequestFor(WEAPONS);
         List<APIResponse<Weapon>> result = fetchAPIResponse(request, WeaponsResponse.class, new ResponseContainer<>());
+        stopTimer();
+        return result;
+    }
+
+
+    @Override
+    @SneakyThrows
+    public List<APIResponse<Armor>> fetchAllArmor() {
+        logger.trace("fetching all armor");
+        startTimer();
+        Request request = getRequestFor(ARMOR);
+        List<APIResponse<Armor>> result = fetchAPIResponse(request, ArmorResponse.class, new ResponseContainer<>());
         stopTimer();
         return result;
     }
