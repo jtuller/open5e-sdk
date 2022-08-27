@@ -2,6 +2,7 @@ package com.wemojema.open5e.api;
 
 import com.wemojema.open5e.model.APIResponse;
 import com.wemojema.open5e.model.Armor;
+import com.wemojema.open5e.model.MagicItem;
 import com.wemojema.open5e.model.Weapon;
 
 import java.util.List;
@@ -13,5 +14,7 @@ public interface Open5EHttpClient {
     List<APIResponse<Weapon>> fetchAllWeapons();
 
     List<APIResponse<Armor>> fetchAllArmor();
+
+    List<APIResponse<MagicItem>> fetchAllMagicItems();
 
 }

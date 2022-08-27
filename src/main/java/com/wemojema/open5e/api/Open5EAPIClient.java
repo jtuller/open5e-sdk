@@ -1,10 +1,7 @@
 package com.wemojema.open5e.api;
 
 import com.alibaba.fastjson.JSON;
-import com.wemojema.open5e.model.APIResponse;
-import com.wemojema.open5e.model.Armor;
-import com.wemojema.open5e.model.Open5EResultHeader;
-import com.wemojema.open5e.model.Weapon;
+import com.wemojema.open5e.model.*;
 import lombok.SneakyThrows;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -23,6 +20,7 @@ public class Open5EAPIClient implements Open5EHttpClient {
     private static final String FORMAT = "?format=json";
     private static final String WEAPONS = "/weapons";
     private static final String ARMOR = "/armor";
+    private static final String MAGIC_ITEMS = "/magicitems";
 
     private static final Logger logger = LoggerFactory.getLogger(Open5EAPIClient.class);
 
@@ -37,6 +35,9 @@ public class Open5EAPIClient implements Open5EHttpClient {
     }
 
     public static class ArmorResponse extends APIResponse<Armor> {
+    }
+
+    public static class MagicItemResponse extends APIResponse<MagicItem> {
     }
 
     public static class ResponseContainer<T extends Open5EResultHeader> {
@@ -65,6 +66,16 @@ public class Open5EAPIClient implements Open5EHttpClient {
         return result;
     }
 
+    @Override
+    @SneakyThrows
+    public List<APIResponse<MagicItem>> fetchAllMagicItems() {
+        logger.trace("fetching all magic items");
+        startTimer();
+        Request request = getRequestFor(MAGIC_ITEMS);
+        List<APIResponse<MagicItem>> result = fetchAPIResponse(request, MagicItemResponse.class, new ResponseContainer<>());
+        stopTimer();
+        return result;
+    }
 
     @Override
     @SneakyThrows

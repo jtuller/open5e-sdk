@@ -3,6 +3,7 @@ package com.wemojema.open5e.api;
 import com.alibaba.fastjson.JSON;
 import com.wemojema.open5e.model.APIResponse;
 import com.wemojema.open5e.model.Armor;
+import com.wemojema.open5e.model.MagicItem;
 import com.wemojema.open5e.model.Weapon;
 import okhttp3.OkHttpClient;
 import org.junit.Ignore;
@@ -47,6 +48,15 @@ public class IntegrationTest {
     void should_not_throw_an_exception_when_fetching_all_armor() {
         Assertions.assertDoesNotThrow(() -> {
             List<APIResponse<Armor>> result = uut.fetchAllArmor();
+            Assertions.assertNotNull(result);
+            System.out.println(JSON.toJSON(result));
+        });
+    }
+
+    @Test
+    void should_not_throw_an_exception_when_fetching_all_magic_items() {
+        Assertions.assertDoesNotThrow(() -> {
+            List<APIResponse<MagicItem>> result = uut.fetchAllMagicItems();
             Assertions.assertNotNull(result);
             System.out.println(JSON.toJSON(result));
         });

@@ -3,6 +3,7 @@ package com.wemojema.open5e.api;
 import com.wemojema.open5e.BaseTest;
 import com.wemojema.open5e.model.APIResponse;
 import com.wemojema.open5e.model.Armor;
+import com.wemojema.open5e.model.MagicItem;
 import com.wemojema.open5e.model.Weapon;
 
 import java.util.Collections;
@@ -25,4 +26,8 @@ public class MockOpen5EHttpClient implements Open5EHttpClient {
         return Collections.emptyList();
     }
 
+    @Override
+    public List<APIResponse<MagicItem>> fetchAllMagicItems() {
+        return Collections.emptyList();
+    }
 }
